@@ -1,0 +1,10 @@
+header {
+    background-color: lightblue;
+}
+
+.card-header{
+    background-color: blue;
+}
+.card{
+    max-width: 20%;
+}
