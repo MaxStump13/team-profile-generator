@@ -20,26 +20,33 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generate = require("./src/generateHTML");
+const Engineer = require("./lib/Engineer");
+const Manager = require("./lib/Manager");
+const Intern = require("./lib/Intern");
+
+
+
 const projectManQuestions = [
     {
         type: "input",
         message: "What is the name of the Project Manager?",
-        name: "proj-man"
+        name: "Name"
     },
     {
         type: "input",
         message: "What is the Project Manager's ID?",
-        name: "proj-man-id"
+        name: "id"
     },
     {
         type: "input",
         message: "What is the Project Managers email?",
-        name: "proj-man-email"
+        name: "email"
     },
     {
         type: "input",
         message: "What is the Project Manager's Office Number?",
-        name: "proj-man-office"
+        name: "office"
     },
 ];
 
@@ -48,24 +55,24 @@ const engineerQuestions =[
     
         type: "input",
         message: "What is the name of the Engineer?",
-        name: "engineer-name"
+        name: "name"
     },
     {
         type: "input",
         message: "What is the Engineer's ID?",
-        name: "engineer-man-id"
+        name: "id"
     },
     {
     
         type: "input",
         message: "What is the email of the Engineer?",
-        name: "engineer-email"
+        name: "email"
     },
     {
     
         type: "input",
         message: "What is the Engineer's GitHub username?",
-        name: "engineer-GitHub"
+        name: "github"
     },
 ];
 const internQuestions =[
@@ -73,50 +80,109 @@ const internQuestions =[
     
         type: "input",
         message: "What is the name of the Intern?",
-        name: "intern-name"
+        name: "name"
     },
     {
         type: "input",
         message: "What is the ID of the Intern?",
-        name: "intern-id"
+        name: "id"
     },
     {
     
         type: "input",
         message: "What is the email of the Intern?",
-        name: "intern-email"
+        name: "email"
     },
     {
     
         type: "input",
-        message: "What is the Intern's GitHub username?",
-        name: "intern-GitHub"
+        message: "What is the school did the Intern go to?",
+        name: "school"
     },
 ];
-const menu = [
+
+function menu(){
+const menuQuestion = [
     {
-    input: "input",
+    input: "list",
     message: "Would you like to add an engineer, intern, or finished building your team?",
-    name: "menu",
+    name: "choice",
     choice: ["Add Engineer", "Add Intern", "Finish building your team"]
     }
 ];
-
+inquirer.prompt(menuQuestion)
+.then(function(answers){
+    if(answers.choice === "Engineer"){
+        inquirer.prompt(engineerQuestions)
+        .then(
+        menu()
+        )
+    }
+    else if(answers.choice === "Intern"){
+        inquirer.prompt(internQuestions)
+        .then(
+        menu()
+        )
+    }
+    else{
+        generateHtml(answers);
+    }
+})
+}
 
 
 function init(){
 inquirer
-.prompt(questions)
+.prompt(projectManQuestions)
 .then(function(answers){
 console.log(answers);
-
+//add to a array or something
 generate(answers);
+menu();
 })
+
 }
 
-function generate(data){
+//make function for prompt menu then have it go to other functions with eng int or done
+//at the end of eng and int, call menu again
+
+// inquirer.prompt(menu)
+// .then(function(answers){
+//     if(answers.choice === "Engineer"){
+//         inquirer.prompt(engineerQuestions)
+//         .then(function)
+//     }
+//     else if(answers.choice === "Intern"){
+//         inquirer.prompt(internQuestions)
+//     }
+//     else{
+//         generateHtml(answers);
+//     }
+// })
+
+
+// { <section class = "card">
+//     <div class="card-header">
+//         <h5 class="card-title">${engineer-name}</h5>
+//         <h5>Engineer</h5>
+//     </div>
+//     <div class="card-body">
+//         <p class="card-text">ID: ${engineer-id}</p>
+//         <p class="card-text">Email: ${engineer-email} </p>
+//         <p class="card-text">Github: ${engineer-github}</p>
+//     </div>  
+// </section> }
+
+{/* <section class = "card">
+    <div class="card-header">
+        <h5 class="card-title">${intern-name}</h5>
+        <h5>Intern</h5>
+    </div>
+    <div class="card-body">
+        <p class="card-text">ID: ${intern-id}</p>
+        <p class="card-text">Email: ${intern-email} </p>
+        <p class="card-text">Office Number: ${intern-school}</p>
+    </div>  
     
-}
-
-
+</section> */}
 init();
