@@ -20,7 +20,7 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHtml = require("./src/generateHTML");
+const generateHtml = require("./src/generateHTML.js");
 
 const Engineer = require("./lib/Engineer.js");
 const Manager = require("./lib/Manager.js");
