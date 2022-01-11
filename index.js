@@ -20,10 +20,12 @@
 
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generate = require("./src/generateHTML");
-const Engineer = require("./lib/Engineer");
-const Manager = require("./lib/Manager");
-const Intern = require("./lib/Intern");
+const generateHtml = require("./src/generateHTML");
+
+const Engineer = require("./lib/Engineer.js");
+const Manager = require("./lib/Manager.js");
+const Intern = require("./lib/Intern.js");
+const team= [];
 
 
 
@@ -31,7 +33,7 @@ const projectManQuestions = [
     {
         type: "input",
         message: "What is the name of the Project Manager?",
-        name: "Name"
+        name: "name"
     },
     {
         type: "input",
@@ -46,7 +48,7 @@ const projectManQuestions = [
     {
         type: "input",
         message: "What is the Project Manager's Office Number?",
-        name: "office"
+        name: "officeNumber"
     },
 ];
 
@@ -72,7 +74,7 @@ const engineerQuestions =[
     
         type: "input",
         message: "What is the Engineer's GitHub username?",
-        name: "github"
+        name: "gitHub"
     },
 ];
 const internQuestions =[
@@ -104,30 +106,48 @@ const internQuestions =[
 function menu(){
 const menuQuestion = [
     {
-    input: "list",
+    type: "list",
     message: "Would you like to add an engineer, intern, or finished building your team?",
     name: "choice",
-    choice: ["Add Engineer", "Add Intern", "Finish building your team"]
+    choices: ["Add Engineer", "Add Intern", "Finish building your team"]
     }
 ];
 inquirer.prompt(menuQuestion)
-.then(function(answers){
-    if(answers.choice === "Engineer"){
-        inquirer.prompt(engineerQuestions)
-        .then(
-        menu()
-        )
-    }
-    else if(answers.choice === "Intern"){
-        inquirer.prompt(internQuestions)
-        .then(
-        menu()
-        )
-    }
+    .then(function(answers){
+        if(answers.choice === "Add Engineer"){
+            inquirer.prompt(engineerQuestions)
+                .then(function(engAnswers){
+                const engineer = new Engineer(engAnswers.name, engAnswers.id, engAnswers.email, engAnswers.gitHub);
+                team.push(engineer);
+                menu();
+                }
+                )
+        }
+        else if(answers.choice === "Add Intern"){
+            inquirer.prompt(internQuestions)
+                .then(function(intAnswers){
+                const intern = new Intern(intAnswers.name, intAnswers.id, intAnswers.email, intAnswers.school);
+                team.push(intern);
+                menu();
+                }
+        
+                )
+        }
     else{
-        generateHtml(answers);
+        console.log(team);
+        const html = generateHtml(team);
+        fs.writeFile("./dist/index.html", html,err => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log("Profile Created. Check the dist folder");
+            }
+        });
     }
-})
+
+    
+    })
 }
 
 
@@ -137,7 +157,8 @@ inquirer
 .then(function(answers){
 console.log(answers);
 //add to a array or something
-generate(answers);
+const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+team.push(manager);
 menu();
 })
 
