@@ -1,22 +1,19 @@
-// const Employee =require("./lib/Employee.js");
-// const Engineer = require("./lib/Engineer.js");
-// const Manager = require("./lib/Manager.js");
-// const Intern = require("./lib/Intern.js");
+
 let html = [];
 
   
             const generateEng = function(engineer){
                 let engHtml = 
                  `<section class = "card">
-                    <div class="card-header">
+                    <div class="card-header" style = "background-color: lightblue">
                         <h5 class="card-title">${engineer.name}</h5>
                         <i>Engineer</i>
                     </div>
                     <div class="card-body">
                         <ul class = "list-group">
                             <li class="list-group-item">ID: ${engineer.id}</li>
-                            <li class="list-group-item">Email: ${engineer.email}</li>
-                            <li class="list-group-item">GitHub: ${engineer.gitHub}</li>
+                            <li class="list-group-item">Email: <a href =" mailto: ${engineer.email}">${engineer.email}</a></li>
+                            <li class="list-group-item">GitHub: <a target = "_blank" href = "https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></li>
                         </ul>
                     </div>
                     </section>`;
@@ -29,14 +26,14 @@ let html = [];
             const generateInt = function(intern){
                 let intHtml =
                 `<section class = "card">
-                        <div class="card-header">
+                        <div class="card-header" style = "background-color: lightblue">
                             <h5 class="card-title">${intern.name}</h5>
                             <i>Intern</i>
                         </div>
                         <div class="card-body">
                         <ul class = "list-group">
                             <li class="list-group-item">ID: ${intern.id}</li>
-                            <li class="list-group-item">Email: ${intern.email}</li>
+                            <li class="list-group-item">Email: <a href ="mailto: ${intern.email}">${intern.email}</a></li>
                             <li class="list-group-item">School: ${intern.school}</li>
                         </ul>
                         </div>
@@ -47,14 +44,14 @@ let html = [];
         
             const generateMan = function(projMan){
                 let proj=  `<section class = "card">
-                        <div class="card-header">
+                        <div class="card-header" style = "background-color: lightblue">
                             <h5 class="card-title">${projMan.name}</h5>
                             <i>Manager</i>
                         </div>
                         <div class="card-body">
                             <ul class = "list-group">
                                 <li class="list-group-item">ID: ${projMan.id}</li>
-                                <li class="list-group-item">Email: ${projMan.email}</li>
+                                <li class="list-group-item">Email: <a href = "mailto: ${projMan.email}">${projMan.email}</a></li>
                                 <li class="list-group-item">Office #: ${projMan.officeNumber}</li>
                             </ul>
                         </div>
@@ -111,10 +108,10 @@ const generate = function(cards){
         <title>Team Profile</title>
     </head>
     <body>
-        <header class = "col-12 text-center">
+        <header class = "col-12 text-center py-3" style = "background-color: lightblue">
                 <h1>My Team</h1>
         </header>
-        <main class ="d-flex flex-wrap  m-3 p-2">
+        <main class ="d-flex flex-wrap justify-content-around m-3 p-2">
             ${cards}
         </main>
         
