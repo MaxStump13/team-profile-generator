@@ -16,7 +16,9 @@ In order to run this application, the inquirer, jest, and fs packages need to be
 ## Usage
 A video tutorial can be found here [Video tutorial](https://drive.google.com/file/d/1rivH68e8yCEMmPezEEvUQNdDI9gvo8LR/view?usp=sharing)
 The generated html document from the tutorial displays the following.
+
 ![generated html document](./assets/images/results.png)
+
 The application can be started by running node index.js. After all questions are answered and the finish option is selected, an html document is generated with the input data. To run the tests on the classes/subclasses, run the command npm test.
 
 ## Credits

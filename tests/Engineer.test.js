@@ -4,7 +4,7 @@ const { exitCode } = require("process");
 const Employee = require("../lib/Employee");
 const Engineer = require("../lib/Engineer");
 const engineer = new Engineer("max", "3", "max@test.com", "maxstump13" );
-
+//tests for engineer subclass, tests if parent class functions and getGithub function returns correct value
 describe("Engineer data test", () => {
     it("should take in engineer info", () =>{
         

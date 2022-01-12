@@ -1,7 +1,7 @@
 
 let html = [];
 
-  
+  //generates a card for an employee with the role engineer
             const generateEng = function(engineer){
                 let engHtml = 
                  `<section class = "card">
@@ -12,7 +12,7 @@ let html = [];
                     <div class="card-body">
                         <ul class = "list-group">
                             <li class="list-group-item">ID: ${engineer.id}</li>
-                            <li class="list-group-item">Email: <a href =" mailto: ${engineer.email}">${engineer.email}</a></li>
+                            <li class="list-group-item">Email: <a href = "mailto:${engineer.email}">${engineer.email}</a></li>
                             <li class="list-group-item">GitHub: <a target = "_blank" href = "https://github.com/${engineer.gitHub}">${engineer.gitHub}</a></li>
                         </ul>
                     </div>
@@ -22,7 +22,8 @@ let html = [];
             }
             
             
-        
+          //generates a card for an employee with the role intern
+
             const generateInt = function(intern){
                 let intHtml =
                 `<section class = "card">
@@ -33,7 +34,7 @@ let html = [];
                         <div class="card-body">
                         <ul class = "list-group">
                             <li class="list-group-item">ID: ${intern.id}</li>
-                            <li class="list-group-item">Email: <a href ="mailto: ${intern.email}">${intern.email}</a></li>
+                            <li class="list-group-item">Email: <a href ="mailto:${intern.email}">${intern.email}</a></li>
                             <li class="list-group-item">School: ${intern.school}</li>
                         </ul>
                         </div>
@@ -41,7 +42,8 @@ let html = [];
                     html.push(intHtml);
             }
         
-        
+          //generates a card for an employee with the role manager
+
             const generateMan = function(projMan){
                 let proj=  `<section class = "card">
                         <div class="card-header" style = "background-color: lightblue">
@@ -51,7 +53,7 @@ let html = [];
                         <div class="card-body">
                             <ul class = "list-group">
                                 <li class="list-group-item">ID: ${projMan.id}</li>
-                                <li class="list-group-item">Email: <a href = "mailto: ${projMan.email}">${projMan.email}</a></li>
+                                <li class="list-group-item">Email: <a href = "mailto:${projMan.email}">${projMan.email}</a></li>
                                 <li class="list-group-item">Office #: ${projMan.officeNumber}</li>
                             </ul>
                         </div>
@@ -59,7 +61,7 @@ let html = [];
                     html.push(proj);
             };
             
-
+//function loops through array and calls respective generate function based on role, then calls generate html function to return the finalized index.html
 function generateHTML(team){  
     for(i = 0; i < team.length; i++){
         const role = team[i].getRole();

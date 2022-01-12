@@ -4,6 +4,7 @@ const { exitCode } = require("process");
 const Employee = require("../lib/Employee");
 const Manager = require("../lib/Manager");
 const manager = new Manager("max", "3", "max@test.com", "123" );
+//tests for manager subclass, tests if parent class functions and getOfficeNumber function returns correct value
 
 describe("Manager data test", () => {
     it("should take in Manager info", () =>{

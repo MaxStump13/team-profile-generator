@@ -1,13 +1,9 @@
 const Employee = require("../lib/Employee")
-// assign declare vars
-// act test functions
-// assert set to var and check with expect
-
 const { expect } = require("@jest/globals");
 const { describe } = require("jest-circus");
 const { exitCode } = require("process");
 const employee = new Employee("max", "3", "max@test.com" );
-
+//tests for employee class, checks if functions in employee class return correct values
 describe("Engineer data test", () => {
     it("should take in engineer info", () =>{
         

@@ -8,7 +8,7 @@ const Intern = require("./lib/Intern.js");
 const team= [];
 
 
-
+//questions prompted when app is started
 const projectManQuestions = [
     {
         type: "input",
@@ -31,7 +31,7 @@ const projectManQuestions = [
         name: "officeNumber"
     },
 ];
-
+//questions prompted when add engineer is selected
 const engineerQuestions =[
     {
     
@@ -57,6 +57,7 @@ const engineerQuestions =[
         name: "gitHub"
     },
 ];
+//questions prompted when add intern is selected
 const internQuestions =[
     {
     
@@ -82,7 +83,7 @@ const internQuestions =[
         name: "school"
     },
 ];
-
+//function to add engineer, intern, or finish team building
 function menu(){
 const menuQuestion = [
     {
@@ -92,6 +93,7 @@ const menuQuestion = [
     choices: ["Add Engineer", "Add Intern", "Finish building your team"]
     }
 ];
+// based on the selection, a different set of questions is listed then the answers are pushed to the team array to generate the html
 inquirer.prompt(menuQuestion)
     .then(function(answers){
         if(answers.choice === "Add Engineer"){

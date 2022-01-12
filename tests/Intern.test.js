@@ -4,6 +4,7 @@ const { exitCode } = require("process");
 const Employee = require("../lib/Employee");
 const Intern = require("../lib/Intern");
 const intern = new Intern("max", "3", "max@test.com", "PSU" );
+//tests for intern subclass, tests if parent class functions and getSchool function returns correct value
 
 describe("Engineer data test", () => {
     it("should take in engineer info", () =>{
